@@ -1,15 +1,15 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
+import teste from "../../services/mainServices"
 import "./styles.css";
 import img1 from "./components/img/Transferobranco.png";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 const LoginPage = () => {
-const myNavegate = useNavigate()
-   
+  
+  console.log('LoginPage')
   const [form, setForm] = useState({
-
     email: "",
     password: "",
   });
@@ -18,22 +18,13 @@ const myNavegate = useNavigate()
     if (form.email === "" || form.password === "") {
       return;
     }
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "application/json",
-      },
-    };
-    const baseUrl = "http://localhost:3000/api/login";
-   
-    fetch(baseUrl, options, myNavegate)
+    teste.getConfiguration()
       .then((response) => response.json())
-      .then((data) =>  {   myNavegate("/") })
-      // segunda data sera redirecioanmento para o dashbord após o login !
-      .catch((error) => console.log("not possible login in the system"))
+      .catch((error) =>  alert(" Not possible login in the system "))
       .console.log(form.email, form.password);
   };
+
+    
   return (
     <div id="login">
       <div className="container">
@@ -41,13 +32,13 @@ const myNavegate = useNavigate()
           <div className="logoLogin">
             <img src={img1} id="logo" width="200px" height="40px" />
           </div>
-          <h4 className="fadeIn first"> Use your credentials to access</h4>
+          <h4 className="fadeIn first"> Use yours credentials to access</h4>
 
           <form action="" onSubmit={handleSubmit}>
             <div className="user-box fadeIn second">
               <input
                 type="text"
-                name=""
+                value="sergio.wellington@transfero.com"
                 required=""
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
               />
@@ -56,7 +47,7 @@ const myNavegate = useNavigate()
             <div className="user-box fadeIn third">
               <input
                 type="password"
-                name=""
+                value="Tony@123"
                 required=""
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
               />
@@ -65,6 +56,7 @@ const myNavegate = useNavigate()
             <button className="fadeIn fourth" type="submit">
               Login
             </button>
+            <h6>© 2022 Transfero, Inc. All Rights Reserved.</h6>
           </form>
         </div>
       </div>

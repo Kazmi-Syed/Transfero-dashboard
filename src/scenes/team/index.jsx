@@ -35,9 +35,9 @@ const Team = () => {
   return (
     <Box m="20px">
       <Header
-        title="Internal Controls"
+        title="System Manage"
         subtitle="List of Collaborators"
-      /> <div>texte unitario</div>
+      /> <div></div>
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -71,6 +71,10 @@ const Team = () => {
         }}
       >
         <DataGrid
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+          
           rows={mockDataTeam}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
