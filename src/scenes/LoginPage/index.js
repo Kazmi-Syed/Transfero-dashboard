@@ -2,66 +2,38 @@
 import React from "react";
 import "./styles.css";
 import img1 from "./components/img/Transferobranco.png";
-import { useRef, useState, useEffect } from 'react';
-import {  useNavigate, useLocation } from 'react-router-dom';
-// import axios from "axios";
-import useAuth from '../hooks/useAuth';
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const { setAuth } = useAuth();
+const myNavegate = useNavigate()
+   
+  const [form, setForm] = useState({
 
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
-
-  const userRef = useRef();
-  const errRef = useRef();
-
-  const [user, setUser] = useState('sergio.wellington@transfero.com');
-  const [pwd, setPwd] = useState('Tony@123');
-  const [errMsg, setErrMsg] = useState('');
-
-  useEffect(() => {
-      userRef.current.focus();
-  }, [])
-
-  useEffect(() => {
-      setErrMsg('');
-  }, [user, pwd])
-
+    email: "",
+    password: "",
+  });
   const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-          var _erro = false;
-          const resp = await main.autentica(user, pwd).catch((err) => {
-              _erro = true;
-              alert(main.catchPadrao(err))
-            });
-      
-          if (_erro) return;
-          const accessToken = resp.data.access_token
-          console.log(JSON.stringify(resp?.data));
-          //console.log(JSON.stringify(response));
-          //const roles = response?.data?.roles;
-          const roles = [2001, 1984, 5150]
-          setAuth({ user, pwd, roles, accessToken });
-          setUser('');
-          setPwd('');
-          navigate(from, { replace: true });
-      } catch (err) {
-          if (!err?.response) {
-              setErrMsg('No Server Response');
-          } else if (err.response?.status === 400) {
-              setErrMsg('Missing Username or Password');
-          } else if (err.response?.status === 401) {
-              setErrMsg('Unauthorized');
-          } else {
-              setErrMsg('Login Failed');
-          }
-          errRef.current.focus();
-      }
-  }
+    e.preventDefault();
+    if (form.email === "" || form.password === "") {
+      return;
+    }
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "application/json",
+      },
+    };
+    const baseUrl = "http://localhost:3000/api/login";
+   
+    fetch(baseUrl, options, myNavegate)
+      .then((response) => response.json())
+      .then((data) =>  {   myNavegate("/") })
+      // segunda data sera redirecioanmento para o dashbord após o login !
+      .catch((error) => console.log("not possible login in the system"))
+      .console.log(form.email, form.password);
+  };
   return (
     <div id="login">
       <div className="container">
@@ -75,22 +47,18 @@ const LoginPage = () => {
             <div className="user-box fadeIn second">
               <input
                 type="text"
-                id="username"
-                ref={userRef}
-                autoComplete="off"
-                onChange={(e) => setUser(e.target.value)}
-                value={user}
-                required
+                name=""
+                required=""
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
               />
               <label htmlFor="">Email</label>
             </div>
             <div className="user-box fadeIn third">
               <input
-                 type="password"
-                 id="password"
-                 onChange={(e) => setPwd(e.target.value)}
-                 value={pwd}
-                 required
+                type="password"
+                name=""
+                required=""
+                onChange={(e) => setForm({ ...form, password: e.target.value })}
               />
               <label htmlFor="">Password</label>
             </div>
@@ -98,7 +66,6 @@ const LoginPage = () => {
               Login
             </button>
           </form>
-          <h6>© 2022 Transfero, Inc. All Rights Reserved.</h6>
         </div>
       </div>
     </div>
