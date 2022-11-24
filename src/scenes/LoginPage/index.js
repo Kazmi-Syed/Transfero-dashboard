@@ -1,39 +1,38 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
-import "./styles.css";
-import img1 from "./components/img/Transferobranco.png";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect } from 'react';
+import './styles.css';
+import img1 from './components/img/Transferobranco.png';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 const LoginPage = () => {
-const myNavegate = useNavigate()
-   
-  const [form, setForm] = useState({
+  const { isAuthenticated, login } = useContext(AuthContext);
 
-    email: "",
-    password: "",
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState({
+    email: '',
+    password: ''
   });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (form.email === "" || form.password === "") {
+    if (form.email === '' || form.password === '') {
       return;
     }
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "application/json",
-      },
-    };
-    const baseUrl = "http://localhost:3000/api/login";
-   
-    fetch(baseUrl, options, myNavegate)
-      .then((response) => response.json())
-      .then((data) =>  {   myNavegate("/") })
-      // segunda data sera redirecioanmento para o dashbord após o login !
-      .catch((error) => console.log("not possible login in the system"))
-      .console.log(form.email, form.password);
+
+    await login(form.email, form.password).then(() => {
+      navigate('/');
+    });
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+  }, []);
+
   return (
     <div id="login">
       <div className="container">

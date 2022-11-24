@@ -1,27 +1,12 @@
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./scenes/LoginPage";
-import AppComponent from "./scenes/pages/AppComponent"
-import Team from "./scenes/team";
-
-
+import AuthProvider from './context/AuthContext';
+import AppRoutes from './routes/app.routes';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<AppComponent />} > 
-          <Route path="/InternalControl" element={<Team/>} />
-          <Route path="/SystemManage" element={<Team/>} />
-        
-        </Route>
-        <Route path="/login/*" element={<LoginPage/>} />
-          
-
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
   );
 }
 
 export default App;
-

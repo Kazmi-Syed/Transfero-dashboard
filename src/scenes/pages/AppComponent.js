@@ -1,8 +1,8 @@
-import { ColorModeContext, useMode } from "../../theme";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import Topbar from "../../scenes/global/Topbar";
-import Sidebar from "../../scenes/global/Sidebar";
-import { Outlet } from "react-router-dom";
+import { ColorModeContext, useMode } from '../../theme';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import Topbar from '../../scenes/global/Topbar';
+import Sidebar from '../../scenes/global/Sidebar';
+import { Outlet } from 'react-router-dom';
 
 function AppComponent() {
   const [theme, colorMode] = useMode();
@@ -16,8 +16,6 @@ function AppComponent() {
           <Sidebar />
           <main className="content">
             <Topbar />
-              
-
 
             <Outlet />
           </main>
