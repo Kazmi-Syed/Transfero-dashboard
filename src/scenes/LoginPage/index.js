@@ -6,15 +6,14 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
+const wrongCredentialsMessage = 'Wrong email or password';
+
 const LoginPage = () => {
   const { isAuthenticated, login } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
-  const [loanding, setLoanding ]= useState (false)
-
-  
-
+  const [loanding, setLoanding] = useState(false);
 
   const [form, setForm] = useState({
     email: '',
@@ -26,13 +25,18 @@ const LoginPage = () => {
     if (form.email === '' || form.password === '') {
       return;
     }
-     
-    setLoanding(true)
 
-    await login(form.email, form.password).then(() => {
-      navigate('/');
-    });
-    setLoanding(false)
+    setLoanding(true);
+
+    await login(form.email, form.password)
+      .then(() => {
+        navigate('/');
+      })
+      .catch(() => {
+        alert(wrongCredentialsMessage); // TODO: Replace this for a custom alert or toaster
+      });
+
+    setLoanding(false);
   };
 
   useEffect(() => {
@@ -70,7 +74,7 @@ const LoginPage = () => {
               <label htmlFor="">Password</label>
             </div>
             <button className="fadeIn fourth" disabled={loanding} type="submit">
-                  Login
+              Login
             </button>
           </form>
         </div>
