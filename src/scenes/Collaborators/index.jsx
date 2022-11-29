@@ -23,11 +23,7 @@ const Team = () => {
 
   const rows = [
     { field: 'id', headerName: 'ID' },
-    {
-      field: 'name',
-      headerName: 'Name',
-      flex: 1
-    },
+    
     {
       field: 'age',
       headerName: 'Age',
@@ -123,6 +119,7 @@ const Team = () => {
         }}
       >
         <DataGrid
+          
           onCellClick={handleClick}
           onRowClick={handleRowClick}
           pageSize={5}

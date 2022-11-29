@@ -11,6 +11,11 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
+  const [loanding, setLoanding ]= useState (false)
+
+  
+
+
   const [form, setForm] = useState({
     email: '',
     password: ''
@@ -21,10 +26,13 @@ const LoginPage = () => {
     if (form.email === '' || form.password === '') {
       return;
     }
+     
+    setLoanding(true)
 
     await login(form.email, form.password).then(() => {
       navigate('/');
     });
+    setLoanding(false)
   };
 
   useEffect(() => {
@@ -61,8 +69,8 @@ const LoginPage = () => {
               />
               <label htmlFor="">Password</label>
             </div>
-            <button className="fadeIn fourth" type="submit">
-              Login
+            <button className="fadeIn fourth" disabled={loanding} type="submit">
+                  Login
             </button>
           </form>
         </div>

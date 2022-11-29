@@ -1,8 +1,10 @@
+import { Dashboard } from '@mui/icons-material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from '../scenes/LoginPage';
 import AppComponent from '../scenes/pages/AppComponent';
 import Team from '../scenes/team';
 import AuthenticatedRoutes from './private.routes';
+
 
 export default function AppRoutes() {
   return (
@@ -10,6 +12,7 @@ export default function AppRoutes() {
       <AuthenticatedRoutes>
         <Routes>
           <Route path="/" element={<AppComponent />}>
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/InternalControl" element={<Team />} />
             <Route path="/SystemManage" element={<Team />} />
           </Route>
