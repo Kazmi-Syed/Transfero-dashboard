@@ -11,10 +11,8 @@ export const mockDataTeam = [
     Email: 'thiago@transfero.com'
   },
   {
-    id:1,
+    id: 1,
     Email: ' fabricio@transfero.com',
     Permissions: ''
-  },
-
- 
+  }
 ];

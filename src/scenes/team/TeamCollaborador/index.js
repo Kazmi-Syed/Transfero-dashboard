@@ -5,7 +5,6 @@ import { mockDataTeam } from '../../../data/mockData';
 import { useTheme } from '@mui/material';
 import { tokens } from '../../../theme';
 
-
 const columns = [
   { headerName: 'ID', flex: 0.5 },
 
@@ -27,7 +26,6 @@ const TeamCollaborador = (props) => {
   const colors = tokens(theme.palette.mode);
   async function getUser() {
     await setTimeout(() => setEmail(mockDataTeam), 5000);
-  
   }
   useEffect(() => {
     getUser();

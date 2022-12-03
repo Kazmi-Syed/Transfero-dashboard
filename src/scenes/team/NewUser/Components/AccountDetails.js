@@ -17,8 +17,7 @@ const AccountDetails = (props) => {
           value={formik.values.email}
         />
       </Grid>
-    
-      
+
       {formik.errors.submit && (
         <Grid item xs={12}>
           <FormHelperText error>{formik.errors.submit}</FormHelperText>

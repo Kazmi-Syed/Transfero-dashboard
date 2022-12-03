@@ -3,8 +3,7 @@ import LoginPage from '../scenes/LoginPage';
 import AppComponent from '../scenes/pages/AppComponent';
 import Team from '../scenes/team';
 import AuthenticatedRoutes from './private.routes';
-import Dashboard from '../scenes/dashboard/index'
-
+import Dashboard from '../scenes/dashboard/index';
 
 export default function AppRoutes() {
   return (

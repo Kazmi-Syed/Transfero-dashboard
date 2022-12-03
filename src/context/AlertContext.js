@@ -1,15 +1,14 @@
-
 import { createContext, useState } from 'react';
 
 const ALERT_TIME = 5000;
 const initialState = {
   text: '',
-  type: '',
+  type: ''
 };
 
 const AlertContext = createContext({
   ...initialState,
-  setAlert: () => {},
+  setAlert: () => {}
 });
 
 export const AlertProvider = ({ children }) => {
@@ -31,7 +30,7 @@ export const AlertProvider = ({ children }) => {
       value={{
         text,
         type,
-        setAlert,
+        setAlert
       }}
     >
       {children}

@@ -75,7 +75,6 @@ const Form = () => {
           {activeStep === steps.length - 1 ? (
             <Button>Submit</Button>
           ) : (
-            
             <Button onClick={formik.handleSubmit}>Next</Button>
           )}
         </Grid>

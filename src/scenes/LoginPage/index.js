@@ -6,8 +6,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
-
-
 const wrongCredentialsMessage = 'Wrong email or password';
 
 const LoginPage = () => {
