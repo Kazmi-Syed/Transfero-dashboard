@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap');
 
 * {
   margin: 0;
@@ -9,12 +9,12 @@
 body {
   height: 100vh;
   display: flex;
-  background: linear-gradient(120deg,#2980b9, #8e44ad);
-  font-family: "Ubuntu", sans-serif;
+  background: linear-gradient(120deg, #2980b9, #8e44ad);
+  font-family: 'Ubuntu', sans-serif;
 }
 
 h6 {
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   margin: 0 0 40px;
   padding: 0;
   color: #fff;
@@ -84,7 +84,6 @@ h6 {
   color: #03e9f4;
   font-size: 12px;
 }
-
 
 .login-box form button {
   border: 0;
@@ -160,4 +159,13 @@ h6 {
 }
 .fadeIn .fourth {
   animation-delay: 1s;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
+.loading svg {
+  color: #eee;
 }

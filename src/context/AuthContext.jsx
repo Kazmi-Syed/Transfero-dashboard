@@ -27,7 +27,7 @@ export default function AuthProvider({ children }) {
   }, []);
 
   const setBearerToken = (token) => {
-    api.defaults.headers.common.authorization = `Bearer ${token}`;
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   };
 
   const login = async (email, senha) => {
@@ -53,7 +53,7 @@ export default function AuthProvider({ children }) {
   };
 
   const logout = () => {
-    api.defaults.headers.common.authorization = null;
+    api.defaults.headers.common['Authorization'] = null;
     localStorage.setItem(userKey, '{}');
     setUser({});
   };

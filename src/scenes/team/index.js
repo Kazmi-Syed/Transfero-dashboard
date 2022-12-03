@@ -1,31 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box } from '@mui/material';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { useNavigate } from 'react-router-dom';
 import TeamCollaborador from './TeamCollaborador';
-import NewUser from '../team/NewUser/newUser';
 
 import Header from '../../components/Header';
 
 import UIButton from './Button/Button';
 
 const Team = () => {
-  let [isNewCollaborador, setIsCollaborador] = useState(true);
+  const navigate = useNavigate();
 
-  function verificationChange() {
-    return setIsCollaborador(!isNewCollaborador);
-  }
-
-  if (isNewCollaborador) {
-    return (
-      <Box m="20px">
-        <Header title="System Manage" subtitle="List of Collaborators" />{' '}
-        <UIButton verificationChange={verificationChange} />
-        <TeamCollaborador />
-      </Box>
-    );
-  } else {
-    return <NewUser />;
-  }
+  return (
+    <Box m="20px">
+      <Header title="System Manage" subtitle="List of Collaborators" />{' '}
+      <UIButton onClick={() => navigate('/NewCollaborators')} />
+      <TeamCollaborador />
+    </Box>
+  );
 };
 
 export default Team;

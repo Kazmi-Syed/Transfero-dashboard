@@ -2,9 +2,11 @@
 import React, { useContext, useEffect } from 'react';
 import './styles.css';
 import img1 from './components/img/Transferobranco.png';
+import toast from '../../functions/toast';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import { CircularProgress } from '@mui/material';
 
 const wrongCredentialsMessage = 'Wrong email or password';
 
@@ -13,7 +15,7 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
-  const [loanding, setLoanding] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
     email: '',
@@ -26,17 +28,17 @@ const LoginPage = () => {
       return;
     }
 
-    setLoanding(true);
+    setLoading(true);
 
     await login(form.email, form.password)
       .then(() => {
         navigate('/Dashboard');
       })
-      .catch(() => {
-        alert(wrongCredentialsMessage); // TODO: Replace this for a custom alert or toaster
+      .catch((error) => {
+        toast.error(error.response.data);
       });
 
-    setLoanding(false);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -73,9 +75,15 @@ const LoginPage = () => {
               />
               <label htmlFor="">Password</label>
             </div>
-            <button className="fadeIn fourth" disabled={loanding} type="submit">
-              Login
-            </button>
+            {loading ? (
+              <div className="loading">
+                <CircularProgress size={26} />
+              </div>
+            ) : (
+              <button className="fadeIn fourth" type="submit">
+                Login
+              </button>
+            )}
           </form>
         </div>
       </div>

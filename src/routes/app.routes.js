@@ -4,6 +4,7 @@ import AppComponent from '../scenes/pages/AppComponent';
 import Team from '../scenes/team';
 import AuthenticatedRoutes from './private.routes';
 import Dashboard from '../scenes/dashboard/index';
+import NewCollaborators from '../scenes/NewCollaborators';
 
 export default function AppRoutes() {
   return (
@@ -14,6 +15,7 @@ export default function AppRoutes() {
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/InternalControl" element={<Team />} />
             <Route path="/SystemManage" element={<Team />} />
+            <Route path="/NewCollaborators" element={<NewCollaborators />} />
           </Route>
         </Routes>
       </AuthenticatedRoutes>
