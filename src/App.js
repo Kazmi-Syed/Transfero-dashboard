@@ -6,6 +6,8 @@ function App() {
     <AuthProvider>
       <AppRoutes />
     </AuthProvider>
+
+    
   );
 }
 

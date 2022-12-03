@@ -4,7 +4,7 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { mockDataTeam } from '../../../data/mockData';
 import { useTheme } from '@mui/material';
 import { tokens } from '../../../theme';
-import { getSuggestedQuery } from '@testing-library/react';
+
 
 const columns = [
   { headerName: 'ID', flex: 0.5 },
@@ -26,9 +26,8 @@ const TeamCollaborador = (props) => {
   const [email, setEmail] = useState([]);
   const colors = tokens(theme.palette.mode);
   async function getUser() {
-    
     await setTimeout(() => setEmail(mockDataTeam), 5000);
-    console.log('formiga');
+  
   }
   useEffect(() => {
     getUser();

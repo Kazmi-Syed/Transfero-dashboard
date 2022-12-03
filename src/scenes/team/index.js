@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import TeamCollaborador from './TeamCollaborador';
+import NewUser from '../team/NewUser/newUser'
 
 import Header from '../../components/Header';
 
@@ -24,9 +25,8 @@ const Team = () => {
     );
   } else {
     return (
-      <>
-        <h1> DEU CERTO ! </h1>
-      </>
+      <NewUser />
+      
     );
   }
 };

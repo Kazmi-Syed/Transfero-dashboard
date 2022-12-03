@@ -6,6 +6,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
+
+
 const wrongCredentialsMessage = 'Wrong email or password';
 
 const LoginPage = () => {
@@ -30,7 +32,7 @@ const LoginPage = () => {
 
     await login(form.email, form.password)
       .then(() => {
-        navigate('/');
+        navigate('/Dashboard');
       })
       .catch(() => {
         alert(wrongCredentialsMessage); // TODO: Replace this for a custom alert or toaster
