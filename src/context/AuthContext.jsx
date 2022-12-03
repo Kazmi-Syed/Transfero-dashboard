@@ -1,12 +1,6 @@
 import { useEffect } from 'react';
 import { createContext, useCallback, useState } from 'react';
-import env from '../config/env';
 import api from '../http/api';
-
-
-
-
-const tokenSistema = env.TOKEN_SISTEMA;
 
 const wrongCredentialsMessage = 'Wrong email or password';
 
@@ -25,11 +19,9 @@ export default function AuthProvider({ children }) {
 
     return (
       !userData.bloqueado &&
-      !!userData.nomeUsuario &&
       !userData.senhaExpirada &&
       !!userData.token &&
       !!userData.usuarioGuid &&
-      !!userData.usuarioId &&
       !!notExpired
     );
   }, []);
@@ -40,13 +32,11 @@ export default function AuthProvider({ children }) {
 
   const login = async (email, senha) => {
     const body = {
-      tokenSistema,
-      chave: email,
-      senha: senha,
-      comPermissoes: false
+      email,
+      senha
     };
 
-    const url = '/api/login/autentica';
+    const url = '/login';
 
     await api.put(url, body).then(({ data }) => {
       if (!isAuthenticated(data)) {
