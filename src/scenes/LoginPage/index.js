@@ -8,8 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { CircularProgress } from '@mui/material';
 
-const wrongCredentialsMessage = 'Wrong email or password';
-
 const LoginPage = () => {
   const { isAuthenticated, login } = useContext(AuthContext);
 

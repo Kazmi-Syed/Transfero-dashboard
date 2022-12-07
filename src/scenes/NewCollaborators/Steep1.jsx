@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { Grid, TextField, Button } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import api from '../../http/api';
 import regex from '../../utils/regex';
+import Typography from '@mui/material/Typography';
 
 const Steep1 = ({ handleNext = () => {}, handleBack = () => {} }) => {
   const form = useForm();
@@ -17,6 +19,9 @@ const Steep1 = ({ handleNext = () => {}, handleBack = () => {} }) => {
 
   return (
     <Grid container>
+      <Typography variant="h2"> Account Information </Typography>
+      <Typography variant="h5"> Update your account information </Typography>
+
       <Grid item xs={12} sx={{ padding: '20px' }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>

@@ -40,7 +40,6 @@ export default function AuthProvider({ children }) {
 
     await api.put(url, body).then(({ data }) => {
       if (!isAuthenticated(data)) {
-        throw new Error(wrongCredentialsMessage);
       }
 
       // ! 24 hours for login expiration
