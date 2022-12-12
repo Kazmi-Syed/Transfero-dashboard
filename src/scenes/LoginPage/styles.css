@@ -106,13 +106,8 @@ h6 {
   background-color: #6a1b9a;
 }
 
-/* animation */
 
-.fadeInDown {
-  animation-name: fadeInDown;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-}
+
 
 @keyframes fadeInDown {
   0% {

@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
+import InfoIcon from '@mui/icons-material/Info';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -18,11 +19,11 @@ const MenuProps = {
   },
 };
 
-const systems = [
-  'SYSTEM A ',
-  'SYSTEM B',
-  'SYSTEM C',
-  'SYSTEM D',
+const systems = [ 
+  'ROLE 1    ',
+  'ROLE 2',
+  'ROLE 3',
+  'ROLE 4',
  
 ];
 
@@ -41,7 +42,7 @@ export default function MultipleSelectCheckmarks() {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
+      <FormControl sx={{ m: 1, width: 320}}>
         <InputLabel id="demo-multiple-checkbox-label">System</InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"
@@ -55,7 +56,7 @@ export default function MultipleSelectCheckmarks() {
         >
           {systems.map((systems) => (
             <MenuItem key={systems} value={systems}>
-              <Checkbox checked={personName.indexOf(systems) > -1} />
+              <Checkbox color="success" checked={personName.indexOf(systems) > -1} />
               <ListItemText primary={systems} />
             </MenuItem>
           ))}

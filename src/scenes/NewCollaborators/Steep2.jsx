@@ -9,7 +9,8 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ConfirmationDialogRaw from '../../system/System';
+
+import Tabpanel from '../NewCollaborators/components/TabPanel';
 
 const Steep2 = ({ handleNext = () => {}, handleBack = () => {} }) => {
   const form = useForm();
@@ -26,60 +27,27 @@ const Steep2 = ({ handleNext = () => {}, handleBack = () => {} }) => {
     <Grid container>
       <Typography variant="h2"> Account Information </Typography>
       <Typography variant="h5"> Update your account information </Typography>
-      <div>
-        <br />
-        <br />
-        <Typography>Transfero Systems</Typography>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography>Design</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <ConfirmationDialogRaw />
-          </AccordionDetails>
-        </Accordion>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography>Finance</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <ConfirmationDialogRaw />
-          </AccordionDetails>
-        </Accordion>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
-            <Typography>Travel </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <ConfirmationDialogRaw />
-          </AccordionDetails>
-        </Accordion>
-        <Accordion disabled>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3a-content"
-            id="panel3a-header"
-          >
-            <Typography>Devops</Typography>
-          </AccordionSummary>
-        </Accordion>
-      </div>
+      <Tabpanel />
 
       <Grid item xs={12}>
-        <Button onClick={handleBack}>Back</Button>
-        <Button onClick={handleSubmit}>Next</Button>
+        <Button
+          sx={{
+            color: 'success.main',
+            color: '#388e3C'
+          }}
+          onClick={handleBack}
+        >
+          Back
+        </Button>
+        <Button
+          sx={{
+            color: 'success.main',
+            color: '#388e3c'
+          }}
+          onClick={handleSubmit}
+        >
+          Next
+        </Button>
       </Grid>
     </Grid>
   );

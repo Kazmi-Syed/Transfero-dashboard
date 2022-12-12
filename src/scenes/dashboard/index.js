@@ -5,7 +5,7 @@ const Dashboard = () => {
   return (
     <Box m="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="DASHBOARD👋" subtitle="Bem vindo" />
+        <Header title="DASHBOARD" subtitle="Bem vindo" />
       </Box>
     </Box>
   );

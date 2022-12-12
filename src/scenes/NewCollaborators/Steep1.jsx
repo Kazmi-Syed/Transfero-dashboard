@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import api from '../../http/api';
 import regex from '../../utils/regex';
 import Typography from '@mui/material/Typography';
+import { palette } from '@mui/system';
 
 const Steep1 = ({ handleNext = () => {}, handleBack = () => {} }) => {
   const form = useForm();
@@ -53,9 +54,18 @@ const Steep1 = ({ handleNext = () => {}, handleBack = () => {} }) => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <Button onClick={handleBack}>Back</Button>
-        <Button onClick={handleSubmit}>Verify user</Button>
+
+      <Grid bgcolor="primary.light" container my={1} item xs={2}>
+        <Button
+          sx={{
+            color: 'success.main',
+            color: '#388e3c'
+          }}
+          onClick={handleSubmit}
+        >
+          {' '}
+          Verify user
+        </Button>
       </Grid>
     </Grid>
   );
