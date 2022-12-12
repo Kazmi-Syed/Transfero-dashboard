@@ -58,7 +58,6 @@ export default function FullWidthTabs() {
     <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
       <AppBar position="static">
         <Tabs
-          
           value={value}
           onChange={handleChange}
           indicatorColor="secondary"
@@ -67,8 +66,6 @@ export default function FullWidthTabs() {
           aria-label="full width tabs example"
         >
           <Tab label="SYSTEM " {...a11yProps(0)} />
-          
-          
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -79,7 +76,6 @@ export default function FullWidthTabs() {
         <TabPanel value={value} index={0} dir={theme.direction}>
           <SimpleAccordion />
         </TabPanel>
-        
       </SwipeableViews>
     </Box>
   );

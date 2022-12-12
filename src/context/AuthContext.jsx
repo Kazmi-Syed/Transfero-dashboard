@@ -26,6 +26,10 @@ export default function AuthProvider({ children }) {
     );
   }, []);
 
+  const isFirstAccess = useCallback((userData) => {
+    return Boolean(userData?.primeiroAcesso);
+  }, []);
+
   const setBearerToken = (token) => {
     api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   };
@@ -72,6 +76,7 @@ export default function AuthProvider({ children }) {
         login,
         logout,
         isAuthenticated: isAuthenticated(user),
+        isFirstAccess: isFirstAccess(user),
         user
       }}
     >

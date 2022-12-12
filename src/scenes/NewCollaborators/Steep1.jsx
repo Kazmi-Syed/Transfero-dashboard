@@ -13,12 +13,11 @@ const Steep1 = ({ handleNext = () => {}, handleBack = () => {} }) => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = form.handleSubmit(async ({ email }) => {
-      try {
-          const response = await axios.get('')
-      } catch(error){
-        console.log(error)
-      }
-
+    try {
+      const response = await axios.get('');
+    } catch (error) {
+      console.log(error);
+    }
 
     // TODO: chamar API de verificar usuário aqui
     setTimeout(() => {

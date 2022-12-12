@@ -2,10 +2,22 @@ import { ColorModeContext, useMode } from '../../theme';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import Topbar from '../../scenes/global/Topbar';
 import Sidebar from '../../scenes/global/Sidebar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 function AppComponent() {
   const [theme, colorMode] = useMode();
+
+  const navigate = useNavigate();
+
+  const { isFirstAccess } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (isFirstAccess) {
+      navigate('/ResetLogin');
+    }
+  }, [isFirstAccess, window?.location?.pathname]);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
