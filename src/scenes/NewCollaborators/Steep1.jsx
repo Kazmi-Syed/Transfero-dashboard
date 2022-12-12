@@ -6,12 +6,20 @@ import api from '../../http/api';
 import regex from '../../utils/regex';
 import Typography from '@mui/material/Typography';
 import { palette } from '@mui/system';
+import axios from 'axios';
 
 const Steep1 = ({ handleNext = () => {}, handleBack = () => {} }) => {
   const form = useForm();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = form.handleSubmit(async ({ email }) => {
+      try {
+          const response = await axios.get('')
+      } catch(error){
+        console.log(error)
+      }
+
+
     // TODO: chamar API de verificar usuário aqui
     setTimeout(() => {
       handleNext();

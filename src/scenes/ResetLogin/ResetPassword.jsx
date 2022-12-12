@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import './styles.css';
 import TextField from '@mui/material/TextField';
 
+
 function ResetPassword() {
     // form validation rules 
     const validationSchema = Yup.object().shape({
@@ -30,7 +31,8 @@ function ResetPassword() {
 
     return (
         <div className="login-box fadeInDown">
-            <h5 className="fadeIn first">React Hook Form - Password and Confirm Password Match Validation</h5>
+            <h2 className="fadeIn first">Reset Password 🔒</h2>
+            <subtitle>Your new password must be different from previously used passwords</subtitle>
             <div className="card-body">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-row">

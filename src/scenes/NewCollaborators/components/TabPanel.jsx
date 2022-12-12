@@ -7,9 +7,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import SimpleAccordion from '../components/SimpleAccordion'
-
-
+import SimpleAccordion from '../components/SimpleAccordion';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -34,13 +32,13 @@ function TabPanel(props) {
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired
 };
 
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`
   };
 }
 
@@ -60,6 +58,7 @@ export default function FullWidthTabs() {
     <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
       <AppBar position="static">
         <Tabs
+          
           value={value}
           onChange={handleChange}
           indicatorColor="secondary"
@@ -67,9 +66,9 @@ export default function FullWidthTabs() {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="SYSTEM " {...a11yProps(0)} />
+          
+          
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -78,14 +77,9 @@ export default function FullWidthTabs() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-        <SimpleAccordion/>
+          <SimpleAccordion />
         </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
-        </TabPanel>
+        
       </SwipeableViews>
     </Box>
   );
