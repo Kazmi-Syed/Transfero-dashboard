@@ -13,8 +13,8 @@ export default function AppRoutes() {
       <AuthenticatedRoutes>
         <Routes>
           <Route path="/" element={<AppComponent />}>
-            <Route path="/Dashboard" element={<Dashboard />} />
-            <Route path="/InternalControl" element={<Team />} />
+            {/* <Route path="/Dashboard" element={<Dashboard />} /> */}
+            {/* <Route path="/InternalControl" element={<Team />} /> */}
             <Route path="/SystemManage" element={<Team />} />
             <Route path="/NewCollaborators" element={<NewCollaborators />} />
             <Route path="/ResetLogin" element={<ResetPassword />} />

@@ -30,7 +30,7 @@ const LoginPage = () => {
 
     await login(form.email, form.password)
       .then(() => {
-        navigate('/Dashboard');
+        navigate('/SystemManage');
       })
       .catch((error) => {
         toast.error(error.response.data);

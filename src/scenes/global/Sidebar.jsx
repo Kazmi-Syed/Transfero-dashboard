@@ -141,13 +141,13 @@ const Sidebar = () => {
           )}
 
           <Box paddingLeft={isCollapsed ? undefined : '10%'}>
-            <Item
+            {/* <Item
               title="Dashboard"
               to="Dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
 
             <Typography
               variant="h6"
@@ -155,22 +155,23 @@ const Sidebar = () => {
               sx={{ m: '15px 0 5px 20px' }}
             ></Typography>
 
-            <Item
+            {/* <Item
               title="Internal controls"
               to="/InternalControls"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
-
+            /> */}
+            
             <Item
-              title="System Manage"
+            
+              title="System Manager"
               to="/SystemManage"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-
+           
             <Typography
               variant="h6"
               color={colors.grey[300]}
