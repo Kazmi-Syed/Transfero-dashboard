@@ -16,7 +16,7 @@ export default function SimpleAccordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>System A</Typography>
+          <Typography>System 1</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <MultipleSelectCheckmarks />
@@ -28,7 +28,7 @@ export default function SimpleAccordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>System B</Typography>
+          <Typography>System 2</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <MultipleSelectCheckmarks />
@@ -40,20 +40,11 @@ export default function SimpleAccordion() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography>System C </Typography>
+          <Typography>System 3 </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <MultipleSelectCheckmarks />
         </AccordionDetails>
-      </Accordion>
-      <Accordion disabled>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography>System D </Typography>
-        </AccordionSummary>
       </Accordion>
     </div>
   );

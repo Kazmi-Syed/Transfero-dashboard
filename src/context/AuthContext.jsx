@@ -4,7 +4,7 @@ import api from '../http/api';
 
 const wrongCredentialsMessage = 'Wrong email or password';
 
-const userKey = 'user';
+const userKey = 'token';
 const INITIAL_USER_STATE = JSON.parse(localStorage.getItem(userKey) || '{}');
 
 export const AuthContext = createContext({});

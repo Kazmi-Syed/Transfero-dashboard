@@ -9,6 +9,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import toast from '../../functions/toast';
 
 import Tabpanel from '../NewCollaborators/components/TabPanel';
 
@@ -16,11 +17,25 @@ const Steep2 = ({ handleNext = () => {}, handleBack = () => {} }) => {
   const form = useForm();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = form.handleSubmit(async ({ email }) => {
-    // TODO: chamar API de verificar usuário aqui
-    setTimeout(() => {
-      handleNext();
-    }, 2000);
+  const handleSubmit = form.handleSubmit(async () => {
+    let tokenConvert = await localStorage.getItem('token');
+    let tokenParse = JSON.parse(tokenConvert);
+    let token = tokenParse.token;
+    await api
+      .get(`/papers/`, {
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then((resp) => {
+        if (resp !== null) {
+          console.log(resp);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
 
   return (

@@ -12,16 +12,26 @@ const Steep1 = ({ handleNext = () => {}, handleBack = () => {} }) => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = form.handleSubmit(async ({ email }) => {
+    let tokenConvert = await localStorage.getItem('token');
+    let tokenParse = JSON.parse(tokenConvert);
+    let token = tokenParse.token;
     await api
-      .get(`/email/${email}`)
+      .get(`/users/email/${email}`, {
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((resp) => {
-        // TODO: trata o response aqui
+        if (resp !== null) {
+          console.log(resp);
+          return handleNext();
+        }
       })
       .catch((error) => {
-        // TODO: trata o erro aqui
+        console.log(error);
       });
   });
-
   return (
     <Grid container>
       <Typography variant="h2"> Account Information </Typography>
