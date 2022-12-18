@@ -24,7 +24,6 @@ const Steep1 = ({ handleNext = () => {}, handleBack = () => {} }) => {
       })
       .then((resp) => {
         if (resp !== null) {
-          console.log(resp);
           return handleNext();
         }
       })
@@ -72,7 +71,6 @@ const Steep1 = ({ handleNext = () => {}, handleBack = () => {} }) => {
       <Grid bgcolor="primary.light" container my={1} item xs={2}>
         <Button
           sx={{
-            color: 'success.main',
             color: '#388e3c'
           }}
           onClick={handleSubmit}

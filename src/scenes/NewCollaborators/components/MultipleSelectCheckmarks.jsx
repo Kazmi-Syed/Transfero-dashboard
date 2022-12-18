@@ -1,15 +1,39 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
 
-export default function CheckboxList() {
+function SimpleDialog(props) {
+  const { onClose, open } = props;
+
+  const handleClose = () => {
+    onClose();
+  };
+
+  return (
+    <Dialog onClose={handleClose} open={open}>
+      <DialogTitle>Set backup account</DialogTitle>
+    </Dialog>
+  );
+}
+
+export default function CheckboxList(props) {
   const [checked, setChecked] = React.useState([0]);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -24,22 +48,40 @@ export default function CheckboxList() {
     setChecked(newChecked);
   };
 
+  async function name1() {
+    let name = await props.paperName1;
+  }
+
+  useEffect(() => {
+    name1()
+  })
+
   return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      {[0, 1, 2, 3].map((value) => {
+      {[0,1,2].map((value) => {
+        debugger
+        
         const labelId = `checkbox-list-label-${value}`;
 
         return (
           <ListItem
             key={value}
             secondaryAction={
-              <IconButton edge="end" aria-label="comments">
-                <InfoIcon />
-              </IconButton>
+              <>
+                <button onClick={handleClickOpen}>
+                  <InfoIcon style={{ borderRadius: '6px' }} />
+                </button>
+                <SimpleDialog open={open} onClose={handleClose} />
+              </>
             }
             disablePadding
           >
-            <ListItemButton role={undefined} color="success" onClick={handleToggle(value)} dense>
+            <ListItemButton
+              role={undefined}
+              color="success"
+              onClick={handleToggle(value)}
+              dense
+            >
               <ListItemIcon>
                 <Checkbox
                   edge="start"
@@ -50,7 +92,7 @@ export default function CheckboxList() {
                   inputProps={{ 'aria-labelledby': labelId }}
                 />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={`ROLE # ${value + 1}`} />
+              <ListItemText id={labelId} primary={`TESTE ${value + 1}`} />
             </ListItemButton>
           </ListItem>
         );

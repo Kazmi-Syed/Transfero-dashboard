@@ -7,8 +7,6 @@ import {
   Step,
   StepLabel,
   Grid,
-  FormHelperText,
-  Button
 } from '@mui/material';
 
 import Header from '../../components/Header';
