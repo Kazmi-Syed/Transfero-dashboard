@@ -7,10 +7,12 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MultipleSelectCheckmarks from '../components/MultipleSelectCheckmarks';
 import api from '../../../http/api';
 
+
 export default function SimpleAccordion() {
-  let nomePaper1 = []
-  let nomePaper2 = []
-  let nomePaper3 = []
+  let nomePaper1 = [];
+  let nomePaper2 = [];
+  let nomePaper3 = [];
+
   const paper = async () => {
     let tokenConvert = await localStorage.getItem('token');
     let tokenParse = JSON.parse(tokenConvert);
@@ -41,10 +43,10 @@ export default function SimpleAccordion() {
           }
           let systemsId1 = system.filter(buscarId1);
 
-          systemsId1.forEach(async item => {
-            let obj = item.name
-            await nomePaper1.push(obj)
-          })
+          systemsId1.forEach(async (item) => {
+            let obj = item.name;
+            await nomePaper1.push(obj);
+          });
 
           let arraySystemId2 = [];
           function buscarId2(value) {
@@ -54,10 +56,10 @@ export default function SimpleAccordion() {
           }
           let systemsId2 = system.filter(buscarId2);
 
-          systemsId2.forEach(async item => {
-            let obj = item.name
-            await nomePaper2.push(obj)
-          })
+          systemsId2.forEach(async (item) => {
+            let obj = item.name;
+            await nomePaper2.push(obj);
+          });
 
           let arraySystemId3 = [];
           function buscarId3(value) {
@@ -66,13 +68,13 @@ export default function SimpleAccordion() {
             if (systemId3 === 3) return arraySystemId3.push(systemId3);
           }
           let systemsId3 = system.filter(buscarId3);
-          
-          systemsId3.forEach(async item => {
-            let obj = item.name
-            await nomePaper3.push(obj)
-          })
 
-          // console.log(nomePaper2)
+          systemsId3.forEach(async (item) => {
+            let obj = item.name;
+            await nomePaper3.push(obj);
+          });
+
+          // console.log(nomePaper1)
           // console.log(nomePaper3)
         }
       })
@@ -83,7 +85,7 @@ export default function SimpleAccordion() {
 
   useEffect(() => {
     paper();
-  });
+  }, []);
 
   return (
     <div>
@@ -98,7 +100,7 @@ export default function SimpleAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <MultipleSelectCheckmarks
-            paperName1={nomePaper1}
+            paper1={nomePaper1}
           />
         </AccordionDetails>
       </Accordion>
@@ -112,7 +114,7 @@ export default function SimpleAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <MultipleSelectCheckmarks
-              paperName2={nomePaper2}
+            paper2={nomePaper2}
           />
         </AccordionDetails>
       </Accordion>
@@ -126,7 +128,7 @@ export default function SimpleAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <MultipleSelectCheckmarks
-              paperName3={nomePaper3}
+            paper3={nomePaper3}
           />
         </AccordionDetails>
       </Accordion>

@@ -32,3 +32,6 @@ body,
   background: #555;
 }
 
+li {
+  list-style: none;
+}
