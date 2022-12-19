@@ -31,3 +31,7 @@ body,
 ::-webkit-scrollbar-track:hover { 
   background: #555;
 }
+
+li {
+  list-style: none;
+}

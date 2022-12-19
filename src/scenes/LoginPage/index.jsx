@@ -30,10 +30,11 @@ const LoginPage = () => {
 
     await login(form.email, form.password)
       .then(() => {
+        toast.success('Successfully Authenticated User');
         navigate('/SystemManage');
       })
-      .catch((error) => {
-        toast.error(error.response.data);
+      .catch((error) =>  {
+        toast.error('error.response.data.responseText');
       });
 
     setLoading(false);

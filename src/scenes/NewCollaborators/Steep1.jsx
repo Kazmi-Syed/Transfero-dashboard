@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Grid, TextField, Button } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -6,22 +5,33 @@ import { palette } from '@mui/system';
 import api from '../../http/api';
 import regex from '../../utils/regex';
 import Typography from '@mui/material/Typography';
+import toast from '../../functions/toast';
 
 const Steep1 = ({ handleNext = () => {}, handleBack = () => {} }) => {
   const form = useForm();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = form.handleSubmit(async ({ email }) => {
+    let tokenConvert = await localStorage.getItem('token');
+    let tokenParse = JSON.parse(tokenConvert);
+    let token = tokenParse.token;
     await api
-      .get(`/email/${email}`)
-      .then((resp) => {
-        // TODO: trata o response aqui
+      .get(`/users/email/${email}`, {
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
       })
-      .catch((error) => {
-        // TODO: trata o erro aqui
+      .then((resp) => {
+        toast.success('Successfully Authenticated User');
+        if (resp !== null) {
+          return handleNext();
+        }
+      })
+      .catch((error) =>  {
+        toast.error(error.response.data.msg);
       });
   });
-
   return (
     <Grid container>
       <Typography variant="h2"> Account Information </Typography>
@@ -62,7 +72,6 @@ const Steep1 = ({ handleNext = () => {}, handleBack = () => {} }) => {
       <Grid bgcolor="primary.light" container my={1} item xs={2}>
         <Button
           sx={{
-            color: 'success.main',
             color: '#388e3c'
           }}
           onClick={handleSubmit}

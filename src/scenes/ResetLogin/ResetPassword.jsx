@@ -3,9 +3,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import './styles.css';
-import TextField from '@mui/material/TextField';
 import { AuthContext } from '../../context/AuthContext';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function ResetPassword() {
   const { isFirstAccess } = useContext(AuthContext);

@@ -1,15 +1,34 @@
-import * as React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import InfoIcon from '@mui/icons-material/Info';
+import React, { useEffect } from 'react';
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
 
-export default function CheckboxList() {
+function SimpleDialog(props) {
+  const { onClose, open } = props;
+
+  const handleClose = () => {
+    onClose();
+  };
+
+  return (
+    <Dialog onClose={handleClose} open={open}>
+      <DialogTitle>Set backup account</DialogTitle>
+    </Dialog>
+  );
+}
+
+export default function CheckboxList(props) {
   const [checked, setChecked] = React.useState([0]);
+  const [open, setOpen] = React.useState(false);
+
+  let roleName = [0, 1, 2, 3];
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -24,37 +43,35 @@ export default function CheckboxList() {
     setChecked(newChecked);
   };
 
-  return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      {[0, 1, 2, 3].map((value) => {
-        const labelId = `checkbox-list-label-${value}`;
+  async function tela() {
+    let name = await props.paper1;
+    let tamanho = await name?.length;
+    let paper1 = name?.slice(tamanho / 2);
+    document.getElementById('lista').innerHTML = await paper1
+      .map(
+        (item) => `
+      <li style='
+          border: 1px solid black;
+          border-left: none; 
+          border-right: none; 
+          margin: 5px 0; 
+          padding: 10px 0; 
+          font-size: 18px'>
+          <input type="checkbox" id=${item} value=${item}>
+         ${item}
+         <button ></button>
+      </li>
+    `
+      )
+      .join('')
+  }
 
-        return (
-          <ListItem
-            key={value}
-            secondaryAction={
-              <IconButton edge="end" aria-label="comments">
-                <InfoIcon />
-              </IconButton>
-            }
-            disablePadding
-          >
-            <ListItemButton role={undefined} color="success" onClick={handleToggle(value)} dense>
-              <ListItemIcon>
-                <Checkbox
-                  edge="start"
-                  checked={checked.indexOf(value) !== -1}
-                  tabIndex={-1}
-                  disableRipple
-                  color="success"
-                  inputProps={{ 'aria-labelledby': labelId }}
-                />
-              </ListItemIcon>
-              <ListItemText id={labelId} primary={`ROLE # ${value + 1}`} />
-            </ListItemButton>
-          </ListItem>
-        );
-      })}
-    </List>
+  useEffect(() => {
+    tela();
+  }, []);
+  return (
+    <>
+      <ul id="lista"></ul>
+    </>
   );
 }

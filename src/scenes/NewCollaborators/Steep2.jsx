@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Grid, TextField, Button } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -9,6 +8,8 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import toast from '../../functions/toast';
+import React, { useEffect } from 'react';
 
 import Tabpanel from '../NewCollaborators/components/TabPanel';
 
@@ -16,13 +17,9 @@ const Steep2 = ({ handleNext = () => {}, handleBack = () => {} }) => {
   const form = useForm();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = form.handleSubmit(async ({ email }) => {
-    // TODO: chamar API de verificar usuário aqui
-    setTimeout(() => {
-      handleNext();
-    }, 2000);
-  });
-
+  const handleSubmit = form.handleSubmit(async () => { });
+  
+  
   return (
     <Grid container>
       <Typography variant="h2"> Account Information </Typography>
@@ -32,7 +29,6 @@ const Steep2 = ({ handleNext = () => {}, handleBack = () => {} }) => {
       <Grid item xs={12}>
         <Button
           sx={{
-            color: 'success.main',
             color: '#388e3C'
           }}
           onClick={handleBack}
@@ -41,7 +37,6 @@ const Steep2 = ({ handleNext = () => {}, handleBack = () => {} }) => {
         </Button>
         <Button
           sx={{
-            color: 'success.main',
             color: '#388e3c'
           }}
           onClick={handleSubmit}
