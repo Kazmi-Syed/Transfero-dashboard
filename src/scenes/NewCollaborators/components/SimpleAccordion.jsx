@@ -13,17 +13,11 @@ export default function SimpleAccordion() {
   let nomePaper2 = [];
   let nomePaper3 = [];
 
-  const paper = async () => {
-    let tokenConvert = await localStorage.getItem('token');
-    let tokenParse = JSON.parse(tokenConvert);
-    let token = tokenParse.token;
+  const getPaper = async () => {
+    
     await api
-      .get(`/papers/`, {
-        headers: {
-          'Content-type': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
-      })
+      .get(`/papers/` )
+
       .then(async (resp) => {
         if (resp !== null) {
           let system = resp.data;
@@ -74,8 +68,8 @@ export default function SimpleAccordion() {
             await nomePaper3.push(obj);
           });
 
-          // console.log(nomePaper1)
-          // console.log(nomePaper3)
+          console.log(nomePaper1)
+          console.log(nomePaper3)
         }
       })
       .catch((error) => {
