@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
@@ -22,25 +23,16 @@ export default function CheckboxList(props) {
 
   let roleName = [0, 1, 2, 3];
 
+  function checkbox(data) {
+   console.log(data)
+  }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    setChecked(newChecked);
   };
 
   async function tela() {
@@ -57,18 +49,18 @@ export default function CheckboxList(props) {
           margin: 5px 0; 
           padding: 10px 0; 
           font-size: 18px'>
-          <input type="checkbox" id=${item} value=${item}>
+          <input type="checkbox" onclick="checkbox(${item})" id=${item} value=${item}>
          ${item}
-         <button ></button>
+         <button class='bi bi-info-circle'> </button>
       </li>
     `
       )
-      .join('')
+      .join('');
   }
 
   useEffect(() => {
     tela();
-  }, []);
+  }, [tela])
   return (
     <>
       <ul id="lista"></ul>
