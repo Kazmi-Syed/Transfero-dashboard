@@ -23,8 +23,8 @@ function SimpleDialog(props) {
   );
 }
 
-export default function CheckboxList(props) {
-  const [checked, setChecked] = React.useState([0]);
+export default function CheckboxList({ papers }) {
+  // const [checked, setChecked] = React.useState([0]);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -35,37 +35,35 @@ export default function CheckboxList(props) {
     setOpen(false);
   };
 
-  const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+  // const handleToggle = (value) => () => {
+  //   const currentIndex = checked.indexOf(value);
+  //   const newChecked = [...checked];
 
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
+  //   if (currentIndex === -1) {
+  //     newChecked.push(value);
+  //   } else {
+  //     newChecked.splice(currentIndex, 1);
+  //   }
 
-    setChecked(newChecked);
-  };
+  //   setChecked(newChecked);
+  // };
 
-  async function name1() {
-    let name = await props.paperName1;
-  }
+  // async function name1() {
+  //   let name = await props.paperName1;
+  // }
 
-  useEffect(() => {
-    name1()
-  })
+  // useEffect(() => {
+  //   name1();
+  // });
 
   return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      {[0,1,2].map((value) => {
-        debugger
-        
-        const labelId = `checkbox-list-label-${value}`;
+      {papers.map((paper) => {
+        const labelId = `checkbox-list-label-${paper.paper_id}`;
 
         return (
           <ListItem
-            key={value}
+            key={paper.paper_id}
             secondaryAction={
               <>
                 <button onClick={handleClickOpen}>
@@ -79,20 +77,20 @@ export default function CheckboxList(props) {
             <ListItemButton
               role={undefined}
               color="success"
-              onClick={handleToggle(value)}
+              // onClick={handleToggle(value)}
               dense
             >
               <ListItemIcon>
                 <Checkbox
                   edge="start"
-                  checked={checked.indexOf(value) !== -1}
+                  // checked={checked.indexOf(value) !== -1}
                   tabIndex={-1}
                   disableRipple
                   color="success"
                   inputProps={{ 'aria-labelledby': labelId }}
                 />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={`TESTE ${value + 1}`} />
+              <ListItemText id={labelId} primary={paper.paper_name} />
             </ListItemButton>
           </ListItem>
         );

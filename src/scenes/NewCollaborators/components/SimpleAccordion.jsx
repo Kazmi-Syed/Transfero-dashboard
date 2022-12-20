@@ -6,126 +6,70 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MultipleSelectCheckmarks from '../components/MultipleSelectCheckmarks';
 import api from '../../../http/api';
-
+import mockedPapersResponse from './mocked-papers-response.json';
 
 export default function SimpleAccordion() {
-  let nomePaper1 = [];
-  let nomePaper2 = [];
-  let nomePaper3 = [];
+  const [papers, setPapers] = React.useState([]);
 
-  const getPaper = async () => {
-    
-    await api
-      .get(`/papers/` )
-
-      .then(async (resp) => {
-        if (resp !== null) {
-          let system = resp.data;
-          let teste = [];
-          await system.forEach(async (item) => {
-            let obj = {
-              system_id: item.system_id
-            };
-            await teste.push(obj);
-          });
-
-          let arraySystemId1 = [];
-          function buscarId1(value) {
-            let systemIdConvert = value;
-            let systemId1 = systemIdConvert.system_id;
-            if (systemId1 === 1) return arraySystemId1.push(systemId1);
-          }
-          let systemsId1 = system.filter(buscarId1);
-
-          systemsId1.forEach(async (item) => {
-            let obj = item.name;
-            await nomePaper1.push(obj);
-          });
-
-          let arraySystemId2 = [];
-          function buscarId2(value) {
-            let systemIdConvert = value;
-            let systemId2 = systemIdConvert.system_id;
-            if (systemId2 === 2) return arraySystemId2.push(systemId2);
-          }
-          let systemsId2 = system.filter(buscarId2);
-
-          systemsId2.forEach(async (item) => {
-            let obj = item.name;
-            await nomePaper2.push(obj);
-          });
-
-          let arraySystemId3 = [];
-          function buscarId3(value) {
-            let systemIdConvert = value;
-            let systemId3 = systemIdConvert.system_id;
-            if (systemId3 === 3) return arraySystemId3.push(systemId3);
-          }
-          let systemsId3 = system.filter(buscarId3);
-
-          systemsId3.forEach(async (item) => {
-            let obj = item.name;
-            await nomePaper3.push(obj);
-          });
-
-          console.log(nomePaper1)
-          console.log(nomePaper3)
-        }
+  const getPapers = async () => {
+    api
+      .get('/papers')
+      .then((data) => {
+        console.log('success', data);
       })
       .catch((error) => {
-        console.log(error);
+        console.log('erro', error);
       });
+
+    const uniqueSystemIds = new Set(
+      mockedPapersResponse.map(({ system_id }) => system_id)
+    );
+
+    const newPapers = Array.from(uniqueSystemIds).map((system_id) => {
+      return {
+        system_id,
+        name_system: mockedPapersResponse.find(
+          (el) => el.system_id === system_id
+        ).name_system,
+        papers: mockedPapersResponse
+          .filter((item) => item.system_id === system_id)
+          .map((item) => ({
+            paper_id: item.paper_id,
+            paper_name: item.name,
+            status: item.status
+          }))
+      };
+    });
+
+    setPapers(newPapers);
   };
 
   useEffect(() => {
-    paper();
+    const asyncFn = async () => {
+      await getPapers();
+    };
+    asyncFn();
   }, []);
+
+  console.log(JSON.stringify(papers, null, 2));
 
   return (
     <div>
       <Typography>Transfero Systems</Typography>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>System 1</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <MultipleSelectCheckmarks
-            paper1={nomePaper1}
-          />
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>System 2</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <MultipleSelectCheckmarks
-            paper2={nomePaper2}
-          />
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography>System 3</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <MultipleSelectCheckmarks
-            paper3={nomePaper3}
-          />
-        </AccordionDetails>
-      </Accordion>
+      {papers.map((paper) => (
+        <Accordion key={paper.system_id}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography>{paper.name_system}</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <MultipleSelectCheckmarks papers={paper.papers} />
+          </AccordionDetails>
+        </Accordion>
+      ))}
     </div>
   );
 }
