@@ -17,9 +17,15 @@ const Steep2 = ({ handleNext = () => {}, handleBack = () => {} }) => {
   const form = useForm();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = form.handleSubmit(async () => { });
-  
-  
+  const handleSubmit = form.handleSubmit(async () => {});
+
+  //To get the user id obtained in step 1
+  //we can get it using the command
+  //localStorage.getItem('userId')
+
+  console.log('Data is displayed in step2');
+  console.log('userId :', localStorage.getItem('userId'));
+
   return (
     <Grid container>
       <Typography variant="h2"> Account Information </Typography>

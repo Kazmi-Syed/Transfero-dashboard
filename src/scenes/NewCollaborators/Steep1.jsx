@@ -7,7 +7,11 @@ import regex from '../../utils/regex';
 import Typography from '@mui/material/Typography';
 import toast from '../../functions/toast';
 
-const Steep1 = ({ handleNext = () => {}, handleBack = () => {} }) => {
+const Steep1 = ({
+  ServerInfo,
+  handleNext = () => {},
+  handleBack = () => {}
+}) => {
   const form = useForm();
   const [loading, setLoading] = useState(false);
 
@@ -15,22 +19,47 @@ const Steep1 = ({ handleNext = () => {}, handleBack = () => {} }) => {
     let tokenConvert = await localStorage.getItem('token');
     let tokenParse = JSON.parse(tokenConvert);
     let token = tokenParse.token;
-    await api
-      .get(`/users/email/${email}`, {
-        headers: {
-          'Content-type': 'application/json',
-          Authorization: `Bearer ${token}`
+    try {
+      const res = await fetch(
+        `https://dev-seguranca-academy.azurewebsites.net/users/email/${email}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-type': 'application/json',
+            Authorization: `Bearer ${token}`
+          }
         }
-      })
-      .then((resp) => {
+      );
+
+      console.log('Response', res.status);
+      if (res.status === 200) {
         toast.success('Successfully Authenticated User');
-        if (resp !== null) {
-          return handleNext();
-        }
-      })
-      .catch((error) =>  {
-        toast.error(error.response.data.msg);
-      });
+        const data = await res.json();
+        localStorage.setItem('userId', data.user_id);
+        return handleNext();
+      }
+    } catch (err) {
+      toast.error(err);
+    }
+
+    // await api
+    //   .get(`/users/email/${email}`, {
+    //     headers: {
+    //       'Content-type': 'application/json',
+    //       Authorization: `Bearer ${token}`
+    //     }
+    //   })
+    //   .then((resp) => {
+    //     toast.success('Successfully Authenticated User');
+    //     if (resp !== null) {
+    //       localStorage.setItem('userInfo', resp.data);
+    //       console.log(resp.data);
+    //       return handleNext(resp.data);
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     toast.error(error.response.data.msg);
+    //   });
   });
   return (
     <Grid container>
