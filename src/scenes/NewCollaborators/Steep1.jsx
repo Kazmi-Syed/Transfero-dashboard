@@ -31,9 +31,7 @@ const Steep1 = ({
         }
       );
 
-      console.log('Response', res.status);
       if (res.status === 200) {
-        toast.success('Successfully Authenticated User');
         const data = await res.json();
         localStorage.setItem('userId', data.user_id);
         return handleNext();
